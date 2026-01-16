@@ -12,6 +12,8 @@ def transcribe(seq: str, reverse: bool = False) -> str:
     """
     transcribed_seq = ''
     for nuceleotide in seq:
+        if nuceleotide not in ALLOWED_NUC:
+            raise ValueError(f'Invalid nucleotide: {nuceleotide}')
         transcribed_seq += TRANSCRIPTION_MAPPING[nuceleotide]
     if reverse:
         return transcribed_seq[::-1]
